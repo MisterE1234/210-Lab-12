@@ -75,16 +75,27 @@ int main()
              (LowestScore >= 80) ? 'B' :
              (LowestScore >= 70) ? 'C' :
              (LowestScore >= 60) ? 'D' : 'F';
-    cout << "Lowest Score: " << LowestStudent << ": " << grade << ", " << LowestScore << "%" << endl;
+    cout << "Lowest Score: " << LowestStudent << ": " << grade << ", " << LowestScore << "% \n" << endl;
+
 
     //Now we will sort the students by their respective scores then display them in descending order:
 
-    sort(students.begin(),scores.end()); //sort the names and scores in ascending order based on the scores 
+    for (int i = 0; i < SIZE - 1; i++)
+    {
+        for (int j = i + 1; j < SIZE; j++)
+        {
+            if (scores[i] > scores[j])
+            {
+                swap(scores[i], scores[j]); //swap the scores
+                swap(students[i], students[j]); //swap the names
+            }
+        }
+    }
     reverse (scores.begin(),scores.end()); //reverse the scores to be in descending order
     reverse (students.begin(),students.end()); //reverse the names to be in descending order
 
     //display the names and scores
-    cout << "Student Names and Scores:" << endl;
+    cout << "Student Names and Scores in Decending Order:" << endl;
     for (int i = 0; i < SIZE; i++)
     { //determine the letter grade based on the score
         grade = (scores[i] >= 90) ? 'A' :
