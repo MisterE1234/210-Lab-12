@@ -29,9 +29,10 @@ int main()
     //read names and scores from the file into the arrays
     for (int i = 0; i < SIZE; i++)
     {
-        iFile.ignore(1000, '\n'); //ignore any leftover newline characters
+        
         getline(iFile,students[i]);
         iFile >> scores[i];
+        iFile.ignore(1000, '\n'); //ignore any leftover newline characters
     }
 
     iFile.close(); //close the input file
@@ -56,7 +57,12 @@ int main()
 
     //find and display the highest score
     int highestScore = *max_element(scores.begin(), scores.end());
-    cout << "Highest Score: " << highestScore << endl;
+    
+    grade = (highestScore >= 90) ? 'A' :
+             (highestScore>= 80) ? 'B' :
+             (highestScore >= 70) ? 'C' :
+             (highestScore >= 60) ? 'D' : 'F';
+    cout << "Highest Score: " << grade << ", " << highestScore << "%" << endl;
 
     return 0;
 }
