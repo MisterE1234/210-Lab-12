@@ -12,6 +12,7 @@ using namespace std;
 
 int main()
 {
+    //declare variables:
     const int SIZE = 30; //size of the array
     char grade;
     array<string, SIZE> students; //array to hold student names
@@ -29,7 +30,7 @@ int main()
     //read names and scores from the file into the arrays
     for (int i = 0; i < SIZE; i++)
     {
-        
+        //The file is formatted with the name on one line and the score on the next line so that we can use getline to read the name and then read the score
         getline(iFile,students[i]);
         iFile >> scores[i];
         iFile.ignore(1000, '\n'); //ignore any leftover newline characters
@@ -40,7 +41,8 @@ int main()
     //display the names and scores
     cout << "Student Names and Scores:" << endl;
     for (int i = 0; i < SIZE; i++)
-    { grade = (scores[i] >= 90) ? 'A' :
+    { //determine the letter grade based on the score
+        grade = (scores[i] >= 90) ? 'A' :
              (scores[i] >= 80) ? 'B' :
              (scores[i] >= 70) ? 'C' :
              (scores[i] >= 60) ? 'D' : 'F';
@@ -53,20 +55,22 @@ int main()
              (average >= 80) ? 'B' :
              (average >= 70) ? 'C' :
              (average >= 60) ? 'D' : 'F';
-    cout << "Average Score: " << grade << endl;
+    cout << "Average Score: " << grade << ", " << average << "%" << endl;
 
-    //find and display the highest score
+    //find and display the the student with the highest score
     int highestScore = *max_element(scores.begin(), scores.end());
     string highestStudent = students[distance(scores.begin(), max_element(scores.begin(), scores.end()))];
-    
+    //determine the letter grade based on the score
     grade = (highestScore >= 90) ? 'A' :
              (highestScore>= 80) ? 'B' :
              (highestScore >= 70) ? 'C' :
              (highestScore >= 60) ? 'D' : 'F';
     cout << "Highest Score: " << highestStudent << ": " << grade << ", " << highestScore << "%" << endl;
 
+    //find and display the student with the lowest score
     int LowestScore = *min_element(scores.begin(), scores.end());
     string LowestStudent = students[distance(scores.begin(), min_element(scores.begin(), scores.end()))];
+    //determine the letter grade based on the score
     grade = (LowestScore >= 90) ? 'A' :
              (LowestScore >= 80) ? 'B' :
              (LowestScore >= 70) ? 'C' :
