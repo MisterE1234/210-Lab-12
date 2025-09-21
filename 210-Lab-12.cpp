@@ -57,12 +57,21 @@ int main()
 
     //find and display the highest score
     int highestScore = *max_element(scores.begin(), scores.end());
+    string highestStudent = students[distance(scores.begin(), max_element(scores.begin(), scores.end()))];
     
     grade = (highestScore >= 90) ? 'A' :
              (highestScore>= 80) ? 'B' :
              (highestScore >= 70) ? 'C' :
              (highestScore >= 60) ? 'D' : 'F';
-    cout << "Highest Score: " << grade << ", " << highestScore << "%" << endl;
+    cout << "Highest Score: " << highestStudent << ": " << grade << ", " << highestScore << "%" << endl;
+
+    int LowestScore = *min_element(scores.begin(), scores.end());
+    string LowestStudent = students[distance(scores.begin(), min_element(scores.begin(), scores.end()))];
+    grade = (LowestScore >= 90) ? 'A' :
+             (LowestScore >= 80) ? 'B' :
+             (LowestScore >= 70) ? 'C' :
+             (LowestScore >= 60) ? 'D' : 'F';
+    cout << "Lowest Score: " << LowestStudent << ": " << grade << ", " << LowestScore << "%" << endl;
 
     return 0;
 }
